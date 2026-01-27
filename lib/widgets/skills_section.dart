@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import '../models/skill_model.dart';
 
 // Temporary simple SkillsSection
 class SkillsSection extends StatelessWidget {
-  const SkillsSection({super.key});
+  final List<Skill> skills;
+  const SkillsSection({
+    super.key,
+    required this.skills,
+  });
 
   @override
   Widget build(BuildContext context) {

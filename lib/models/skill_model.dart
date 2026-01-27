@@ -1,24 +1,21 @@
-// This file defines what a "Skill" looks like
 class Skill {
   final String name;
   final int level; // 0-100 percentage
-  final String icon; // Optional: icon name
 
   Skill({
     required this.name,
     required this.level,
-    this.icon = 'code',
   });
 }
 
 // Helper function to get sample skills
 List<Skill> getSampleSkills() {
   return [
-    Skill(name: 'Flutter', level: 90, icon: 'flutter'),
-    Skill(name: 'Dart', level: 85, icon: 'dart'),
-    Skill(name: 'Firebase', level: 80, icon: 'firebase'),
-    Skill(name: 'Kotlin', level: 75, icon: 'kotlin'),
-    Skill(name: 'Python', level: 90, icon: 'python'),
-    Skill(name: 'Sql', level: 70, icon: 'database'),
+    Skill(name: 'Flutter', level: 90),
+    Skill(name: 'Dart', level: 85),
+    Skill(name: 'Firebase', level: 80),
+    Skill(name: 'UI/UX Design', level: 75),
+    Skill(name: 'API Integration', level: 85),
+    Skill(name: 'State Management', level: 80),
   ];
 }

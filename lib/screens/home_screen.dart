@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import '../widgets/profile_section.dart';
-import '../widgets/skills_section.dart';  // Uncommented!
-import '../utils/constants.dart';
+import '../widgets/skills_section.dart';
+import '../widgets/projects_section.dart';  // Add this import
+import '../models/skill_model.dart';
+import '../models/project_model.dart';      // Add this import
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get sample data
+    final skills = getSampleSkills();
+    final projects = getSampleProjects();  // Add this line
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -17,8 +23,8 @@ class HomeScreen extends StatelessWidget {
               title: const Text('My Portfolio'),
               centerTitle: true,
               elevation: 0,
-              backgroundColor: AppColors.background,
-              foregroundColor: Colors.lightBlue,
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.black87,
             ),
 
             // Profile Section
@@ -27,19 +33,29 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Skills Section
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: SkillsSection(),  // Using our new widget
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SkillsSection(skills: skills),
             ),
 
-            // More sections coming soon...
-            _buildComingSoonSection('Projects', Icons.work),
-            const SizedBox(height: 16),
-            _buildComingSoonSection('Experience', Icons.history_edu),
-            const SizedBox(height: 16),
-            _buildComingSoonSection('Contact', Icons.contact_mail),
+            const SizedBox(height: 40),
+
+            // Projects Section - ADD THIS
+            ProjectsSection(projects: projects),
 
             const SizedBox(height: 40),
+
+            // Experience Section (Coming Soon)
+            _buildComingSoonSection('Experience', Icons.work_history),
+            const SizedBox(height: 16),
+
+            // Contact Section (Coming Soon)
+            _buildComingSoonSection('Contact', Icons.email),
+
+            const SizedBox(height: 40),
+
+            // Footer
+            _buildFooter(),
           ],
         ),
       ),
@@ -53,31 +69,71 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200),  // Fixed: using .shade200
+        border: Border.all(color: Colors.grey.shade200),
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: Colors.grey,  // Fixed: using Colors.grey instead of Colors.grey[400]
-            size: 24,
-          ),
+          Icon(icon, color: Colors.grey.shade400, size: 24),
           const SizedBox(width: 16),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
-              color: Colors.black87,  // Fixed: constant color
+              color: Colors.grey.shade600,
             ),
           ),
           const Spacer(),
-          const Text(
+          Text(
             'Coming Soon',
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey,  // Fixed: constant color
+              color: Colors.grey.shade400,
               fontStyle: FontStyle.italic,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooter() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      color: Colors.blue.shade900,
+      child: Column(
+        children: [
+          const Text(
+            '© 2024 My Portfolio',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Built with Flutter 💙',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () => print('Email'),
+                icon: const Icon(Icons.email, color: Colors.white),
+              ),
+              IconButton(
+                onPressed: () => print('GitHub'),
+                icon: const Icon(Icons.code, color: Colors.white),
+              ),
+              IconButton(
+                onPressed: () => print('LinkedIn'),
+                icon: const Icon(Icons.work, color: Colors.white),
+              ),
+            ],
           ),
         ],
       ),
