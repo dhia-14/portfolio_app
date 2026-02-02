@@ -46,11 +46,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 40),
 
             // Experience Section (Coming Soon)
-            _buildComingSoonSection('Experience', Icons.work_history),
+            _buildComingSoonSection('Experience', Icons.work_history,"I've worked on Quteratech"),
             const SizedBox(height: 16),
 
             // Contact Section (Coming Soon)
-            _buildComingSoonSection('Contact', Icons.email),
+            _buildComingSoonSection('Contact', Icons.email,"+216 53 627 409"),
 
             const SizedBox(height: 40),
 
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildComingSoonSection(String title, IconData icon) {
+  Widget _buildComingSoonSection(String title, IconData icon,String content) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(20),
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            'Coming Soon',
+            content,
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey.shade400,
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           const Text(
-            '© 2024 My Portfolio',
+            '© 2026 My Portfolio',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
